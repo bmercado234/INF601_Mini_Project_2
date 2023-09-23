@@ -4,8 +4,9 @@
 
 import pandas as pd
 import pprint
-
 from faker import Faker
+import numpy as np
+import matplotlib.pyplot as plt
 
 fake = Faker()
 
@@ -76,18 +77,20 @@ data = [
  'username': 'leecharlene'}
 ]
 
-name_dict = {'name': [record['name'] for record in data]}
-sex_dict = {'sex': [record['sex'] for record in data]}
-username_dict = {'username': [record['username'] for record in data]}
-birthdate_dict = {'birthdate': [record['birthdate'] for record in data]}
+#name_dict = {'name': [record['name'] for record in data]}
+#sex_dict = {'sex': [record['sex'] for record in data]}
+#username_dict = {'username': [record['username'] for record in data]}
+#birthdate_dict = {'birthdate': [record['birthdate'] for record in data]}
 
 
-print(name_dict)
-print(sex_dict)
-print(username_dict)
-print(birthdate_dict)
+#print(name_dict)
+#print(sex_dict)
+#print(username_dict)
+#print(birthdate_dict)
 
-df = pd.DataFrame(
+df = pd.read_csv("spotify-2023.csv", encoding='latin1')
+
+df1 = pd.DataFrame(
     {
      'name': ['Jason Green', 'Mrs. Sharon Green', 'Doris Martinez', 'Vicki Green', 'David Dennis', 'Robert Giles',
               'Mrs. Megan Bruce', 'Joshua Taylor', 'Mia Barnes', 'Adrian Fischer'],
@@ -98,8 +101,16 @@ df = pd.DataFrame(
                   'alyssa19', 'sbell', 'martincaleb', 'leecharlene'],
 
      'birthdate': ['1950, 10, 4', '1974, 4, 25', '2019, 7, 11', '1987, 8, 16', '1924, 8, 1', '2002, 9, 5',
-                   '1918, 6, 26', '1964, 2, 15', '1964, 7, 17', '1950, 7, 22'],
+                   '1918, 6, 26', '1964, 2, 15', '1964, 7, 17', '1950, 7, 22']
     }
 )
 
+
 print(df)
+df.plot()
+plt.show()
+
+
+#np_name_dict = np.array(name_dict)
+#np_name_dict.plot()
+#plt.show()
