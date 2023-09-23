@@ -89,9 +89,17 @@ print(birthdate_dict)
 
 df = pd.DataFrame(
     {
-     name_dict,
-     sex_dict,
-     username_dict,
-     birthdate_dict
+     'name': ['Jason Green', 'Mrs. Sharon Green', 'Doris Martinez', 'Vicki Green', 'David Dennis', 'Robert Giles',
+              'Mrs. Megan Bruce', 'Joshua Taylor', 'Mia Barnes', 'Adrian Fischer'],
+
+     'sex': ['M', 'F', 'F', 'F', 'M', 'M', 'F', 'M', 'F', 'M'],
+
+     'username': ['ysullivan', 'davismary', 'lisa83', 'daviskatherine', 'thorntonnathan', 'stephenschristine',
+                  'alyssa19', 'sbell', 'martincaleb', 'leecharlene'],
+
+     'birthdate': ['1950, 10, 4', '1974, 4, 25', '2019, 7, 11', '1987, 8, 16', '1924, 8, 1', '2002, 9, 5',
+                   '1918, 6, 26', '1964, 2, 15', '1964, 7, 17', '1950, 7, 22'],
     }
 )
+
+print(df)
