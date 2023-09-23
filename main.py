@@ -27,28 +27,38 @@ import matplotlib.pyplot as plt
 #(10/10 points) Store this information in Pandas dataframe. These should be 2D data as a dataframe, meaning the data
 # is labeled tabular data.
 spotify = pd.read_csv("spotify-2023.csv", encoding='latin1', index_col='track_name')
-spotify['streams'] = pd.to_numeric(spotify['streams'], errors='coerce')
-spotify_streams = spotify.sort_values(by='streams', ascending=False).head(10)
-spotify_streams = spotify_streams['streams']
 
-ax1 = spotify_streams.plot()
-plt.xlabel('Track Name')
-plt.ylabel('Streams')
-plt.title('Top 10 Tracks by Streams')
-plt.grid(True)
-plt.xticks(range(10), spotify_streams.index, rotation=45, fontsize=6)
+
+spotify['streams'] = pd.to_numeric(spotify['streams'], errors='coerce')
+top_10_streams = spotify.sort_values(by='streams', ascending=False).head(10)
+spotify_streams = top_10_streams['streams']
+track_names = top_10_streams.index
+fig, ax = plt.subplots(figsize=(10,6))
+x_positions = np.arange(len(track_names))
+ax.bar(x_positions, spotify_streams)
+ax.set_xticks(x_positions)
+ax.set_xticklabels(track_names, rotation=45, fontsize=10, ha='right')
+ax.set_xlabel('Track Name', fontsize=12)
+ax.set_ylabel('Amount of Streams', fontsize=12)
+ax.set_title('Top 10 Streamed Tracks on Spotify', fontsize=14)
+ax.grid(True)
 plt.tight_layout()
 plt.show()
 
 #(10/10 points) Using matplotlib, graph this data in a way that will visually represent the data.
 # Really try to build some fancy charts here as it will greatly help you in future homework assignments and in the final project.
-spotify_playlists = spotify.sort_values(by='in_spotify_playlists', ascending=False).head(10)
-spotify_playlists = spotify_playlists['in_spotify_playlists']
-ax = spotify_playlists.plot()
-plt.xlabel('Track Name')
-plt.ylabel('Amount in Spotify Playlists')
-plt.title('Top 10 Tracks in Spotify Playlists')
-plt.grid(True)
-plt.xticks(range(10), spotify_playlists.index, rotation=45, fontsize=6)
+top_10_playlists = spotify.sort_values(by='in_spotify_playlists', ascending=False).head(10)
+spotify_playlists = top_10_playlists['in_spotify_playlists']
+track_names = top_10_playlists.index
+
+fig, ax1 = plt.subplots(figsize=(10,6))
+x_positions = np.arange(len(track_names))
+ax1.bar(x_positions, spotify_playlists)
+ax1.set_xticks(x_positions)
+ax1.set_xticklabels(track_names, rotation=45, fontsize=10, ha='right')
+ax1.set_xlabel('Track Name', fontsize=12)
+ax1.set_ylabel('Amount in Spotify Playlists', fontsize=12)
+ax1.set_title('Top 10 Tracks in Spotify Playlists', fontsize=14)
+ax1.grid(True)
 plt.tight_layout()
 plt.show()
