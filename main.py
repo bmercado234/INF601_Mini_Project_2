@@ -9,6 +9,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import datetime
 
 #(10/10 points) Save these graphs in a folder called charts as PNG files. Do not upload these to your project folder,
 # the project should save these when it executes. You may want to add this folder to your .gitignore file.
@@ -60,5 +61,17 @@ ax1.set_xlabel('Track Name', fontsize=12)
 ax1.set_ylabel('Amount in Spotify Playlists', fontsize=12)
 ax1.set_title('Top 10 Tracks in Spotify Playlists', fontsize=14)
 ax1.grid(True)
+plt.tight_layout()
+plt.show()
+
+current_year = datetime.datetime.now().year
+past_20_years = spotify[(spotify['released_year'] >= current_year - 20) & (spotify['released_year'] <= current_year)]
+songs_per_year = past_20_years['released_year'].value_counts().sort_index()
+plt.figure(figsize=(12, 6))
+songs_per_year.plot(kind='bar')
+plt.xlabel('Year', fontsize=12)
+plt.ylabel('Number of Tracks', fontsize=12)
+plt.title('Number of Top Tracks Past 20 Years', fontsize=14)
+plt.grid(True)
 plt.tight_layout()
 plt.show()
